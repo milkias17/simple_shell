@@ -1,4 +1,6 @@
 #include "main.h"
+#include <stdio.h>
+#include <stdlib.h>
 
 
 /**
@@ -22,7 +24,7 @@ void execute_cmd(char *pg_name, char **cmd_and_args)
 
 	if (is_builtin(cmd_and_args[0]))
 	{
-
+		_exit(-1);
 	}
 	exec_status = execve(cmd_and_args[0], cmd_and_args, environ);
 	if (exec_status == -1)

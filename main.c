@@ -1,4 +1,5 @@
 #include "main.h"
+#include <stdio.h>
 
 /**
 	* split_cmd - splits user input
@@ -94,6 +95,8 @@ int main_loop(char *pg_name)
 		else
 		{
 			wait(&status);
+			if (status != 0)
+				exit(0);
 		}
 	}
 }
