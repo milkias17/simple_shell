@@ -1,4 +1,6 @@
 #include "main.h"
+#include <stdio.h>
+#include <unistd.h>
 
 /**
 	* split_cmd - splits user input
@@ -53,11 +55,45 @@ char **take_user_cmd()
 
 	if (status == -1)
 	{
-		exit(1);
+		return (NULL);
 	}
 	splitted_cmd = split_cmd(string, bufsize);
 
 	return (splitted_cmd);
+}
+
+/**
+	* is_builtin - checks whether a commands is a builtin or not
+	* Description: checks whether a commands is a builtin or not
+	* Return: int
+*/
+int is_builtin(char *cmd)
+{
+	// TODO: implement much better is_builtin where if it is builtin return a function and so on
+	return _strcmp(cmd, "exit");
+}
+
+/**
+	* execute_cmd - executes a command
+	* Description: executes a command
+	* Return: void
+*/
+void execute_cmd(char *pg_name, char **cmd_and_args)
+{
+	int exec_status;
+	extern char **environ;
+
+	if (is_builtin(cmd_and_args[0]))
+	{
+
+	}
+	exec_status = execve(cmd_and_args[0], cmd_and_args, environ);
+	if (exec_status == -1)
+	{
+		perror(pg_name);
+	}
+
+
 }
 
 /**
@@ -77,18 +113,18 @@ int main_loop(char *pg_name)
 	{
 		print_prompt();
 		cmd_and_args = take_user_cmd();
+
+		if (cmd_and_args == NULL)
+		{
+			return (1);
+		}
+
 		my_pid = fork();
 		char exec_status;
 
 		if (my_pid == 0)
 		{
-			exec_status = execve(cmd_and_args[0], cmd_and_args, NULL);
-			if (exec_status == -1)
-			{
-				char *err_msg = _strcat(pg_name, ": No such file or directory\n");
-
-				write(1, err_msg, _strlen(err_msg));
-			}
+			execute_cmd(pg_name, cmd_and_args);
 		}
 
 		else
