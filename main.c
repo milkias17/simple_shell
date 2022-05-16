@@ -1,6 +1,4 @@
 #include "main.h"
-#include <stdio.h>
-#include <unistd.h>
 
 /**
 	* split_cmd - splits user input
@@ -60,40 +58,6 @@ char **take_user_cmd()
 	splitted_cmd = split_cmd(string, bufsize);
 
 	return (splitted_cmd);
-}
-
-/**
-	* is_builtin - checks whether a commands is a builtin or not
-	* Description: checks whether a commands is a builtin or not
-	* Return: int
-*/
-int is_builtin(char *cmd)
-{
-	// TODO: implement much better is_builtin where if it is builtin return a function and so on
-	return _strcmp(cmd, "exit");
-}
-
-/**
-	* execute_cmd - executes a command
-	* Description: executes a command
-	* Return: void
-*/
-void execute_cmd(char *pg_name, char **cmd_and_args)
-{
-	int exec_status;
-	extern char **environ;
-
-	if (is_builtin(cmd_and_args[0]))
-	{
-
-	}
-	exec_status = execve(cmd_and_args[0], cmd_and_args, environ);
-	if (exec_status == -1)
-	{
-		perror(pg_name);
-	}
-
-
 }
 
 /**

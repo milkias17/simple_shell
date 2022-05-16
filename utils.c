@@ -6,7 +6,7 @@
 	* Return: void
 */
 
-void print_prompt()
+void print_prompt(void)
 {
 	write(1, "#cisfun$ ", 9);
 }
@@ -81,6 +81,8 @@ char *_strcat(char *s1, char *s2)
 
 /**
 	* _strcmp - compares two strings
+	* @s1: first string to compare
+	* @s2: second string to compare
 	* Description: compares two strings
 	* Return: int
 */

@@ -2,6 +2,7 @@
 #define MY_H
 
 #include <unistd.h>
+extern char **environ;
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -13,4 +14,5 @@ void print_prompt();
 void _strcpy(char *src, char *dest);
 char *_strcat(char *s1, char *s2);
 int _strcmp(char *s1, char *s2);
+void execute_cmd(char *pg_name, char **cmd_and_args);
 #endif
