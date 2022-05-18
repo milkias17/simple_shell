@@ -1,4 +1,4 @@
-#include "main.h"
+#include "shell.h"
 
 /**
   * *path_search - makes a complete path from path.
